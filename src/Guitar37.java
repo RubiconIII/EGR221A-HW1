@@ -14,12 +14,12 @@ public class Guitar37 implements Guitar {
        guitS  = new GuitarString[37];
        if(useKP == true){
             for (int i = 0; i < KEYBOARD.length(); i++) {
-                guitS[i] = new KPGuitarString(Math.pow(2, ((i - 24) / 12)) * 440);
+                guitS[i] = new KPGuitarString(Math.pow(2, ((i - 24.0) / 12.0)) * 440.0);
             }
         }
        else{
            for (int i = 0; i < KEYBOARD.length(); i++) {
-               guitS[i] = new SimpleGuitarString(Math.pow(2, ((i - 24) / 12)) * 440);
+               guitS[i] = new SimpleGuitarString(Math.pow(2, ((i - 24.0) / 12.0)) * 440.0);
            }
        }
 
@@ -28,8 +28,10 @@ public class Guitar37 implements Guitar {
     // Specifies pitch of played note
     @Override
     public void playNote(int pitch) {
-        if (pitch + 12 >= 0 && pitch + 12 < KEYBOARD.length()) {
-            guitS[pitch + 12].pluck();
+        int n = pitch + 12;
+
+        if(n < KEYBOARD.length() && n >= 0){
+            guitS[n].pluck();
         }
     }
 
